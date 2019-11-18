@@ -1,257 +1,158 @@
-<form name="EditView2" method="POST" action="index.php">
-<input type="hidden" name="module" value="{$MODULE}">
-<input type="hidden" name="record" value="{if isset($ID)}{$ID}{/if}">
-<input type="hidden" name="mode" value="{if isset($MODE)}{$MODE}{/if}">
-<input type="hidden" name="action" value="index">
-<input type="hidden" name="parenttab" value="{$CATEGORY}">
-<input type="hidden" name="mytab" value="2">
-{*<!-- Contents -->*}
-<table border=0 cellspacing=0 cellpadding=0 width=100% align="center">
-                   <tr>
-                    <td style="padding:10px 5px 0px 5px">
-                    {assign var=accheadtext value=$MOD.accparams|replace:' ':''}
-                    <table border=0 cellspacing=0 cellpadding=0 width=100% class="small">
-                    <tr>{strip}
-                         <td colspan=4 class="dvInnerHeader">
-                            <div style="float:left;font-weight:bold;"><a href="javascript:showHideStatus('tbl{$accheadtext}','aid{$accheadtext}',1);">
-                            {if $showdispacc eq 'block'}
-                                 <span id="aid{$accheadtext}" class="slds-accordion" style="display: inline-block;">
-                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-                                        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-                                    </svg>                                 
-                                 </span>
-                                   {else}
-                                  <span id="aid{$accheadtext}" class="slds-accordion" style="display: inline-block;">
-                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-                                        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-                                    </svg>                                   
-                                  </span>
-                                 {/if}<span style="float:right;color:#0073ea"> &nbsp; {$MOD.accparams}</span></a>
+<div id="view" class="workflows-list">
+    <datatable url="index.php?module=MarketingDashboard&action=MarketingDashboardAjax&file=getJSON&mktdbtab=2" template="create_contact_search_row_template">
+        <header>
+            <ul class="slds-accordion">
+                {assign var=accheadtext value=$MOD.accparams|replace:' ':''}
+                <li class="slds-accordion__list-item" onclick="accordionOpen('section_searchaccounts');">
+                    <section id="section_searchaccounts" class="slds-accordion__section">
+                        <div class="slds-accordion__summary">
+                            <h3 class="slds-accordion__summary-heading">
+                            <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" />
+                            </svg>
+                            <span style="float:right;color:#0073ea" class="slds-truncate" title="Accordion summary">{$MOD.accparams}</span>
+                            </h3>
+                            <div>
+                                <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" title="Show More" onclick="accordionOpen('section_searchaccounts');">
+                                    <svg class="slds-button__icon" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#down" />
+                                    </svg>
+                                    <span class="slds-assistive-text">Show More</span>
+                                </button>
                             </div>
-                         </td>{/strip}
-                      </tr>
-                   </table>
-		<div style="width:auto;display:{$showdispacc};" id="tbl{$accheadtext}" >
-                    <input type="hidden" id="showtbl{$accheadtext}" name="showacc" value="{$showdispacc}">
-		  <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
-                  <tr>
-                    <td width="20%" class="dvtCellLabel" align=right>
-                            {$MOD.filteracc}
-                    </td>
-                    <td width="30%" align=left class="dvtCellInfo">
-                                <select name="selfilteracc1" class="singlecombo" tabindex="30">
-                                 {foreach key=row item=accfilter from=$accountfilters}
-                                    {if $row eq $indexaccfilter1}
-                                    <option value="{$row}" selected>{$accfilter}</option>
-                                    {else}
-                                    <option value="{$row}">{$accfilter}</option>
-                                    {/if}
-                                  {/foreach}
-                                   
-                                </select>
-                    </td>
-                     <td width="20%" class="dvtCellLabel" align=right>
-                            {$MOD.filtercont}
-                    </td>
-                    <td width="30%" align=left class="dvtCellInfo">
-                                <select name="selfilteraccountcon" class="singlecombo" tabindex="30">
-                                 {foreach key=row item=confilter from=$contactfilters}
-                                    {if $row eq $indexaccountconfilter}
-                                    <option value="{$row}" selected>{$confilter}</option>
-                                    {else}
-                                    <option value="{$row}">{$confilter}</option>
-                                    {/if}
-                                  {/foreach}
-                                </select>
-                    </td>
-                    </tr>
-                   <tr>
-                        <td width="20%" class="dvtCellLabel" align=right>
-				{$MOD.nocontacts}
-			</td>
-			<td width="30%" align=left class="dvtCellInfo">
-			<input type=checkbox name="nocontacts" {$nocontacts}>
-			</td>
-                        <td width="20%" class="dvtCellLabel" align=right>
-				{$MOD.withcontacts}
-			</td>
-			<td width="30%" align=left class="dvtCellInfo">
-			<input type=checkbox name="withcontacts" {$withcontacts}>
-			</td>
-                    </tr>
-	         </table>
-		</div>
-</td>
-</tr>
-                   <tr>
-                    <td style="padding:10px 5px 0px 5px">
-                    {assign var=con1headtext value=$MOD.conparams|replace:' ':''}
-                    <table border=0 cellspacing=0 cellpadding=0 width=100% class="small">
-                    <tr>{strip}
-                         <td colspan=4 class="dvInnerHeader">
-                            <div style="float:left;font-weight:bold;"><a href="javascript:showHideStatus('tbl1{$con1headtext}','aid1{$con1headtext}',1);">
-                            {if $showdispcon1 eq 'block'}
-                                 <span id="aid1{$con1headtext}" class="slds-accordion" style="display: inline-block;">
-                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-                                        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-                                    </svg>                                 
-                                 </span>
-                                   {else}
-                                  <span id="aid1{$con1headtext}" class="slds-accordion" style="display: inline-block;">
-                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-                                        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-                                    </svg>                                  
-                                  </span>
-                                 {/if}<span style="float:right;color:#0073ea;"> &nbsp; {$MOD.conparams}</a></span>
+                        </div>
+                        <div aria-hidden="true" class="slds-accordion__content" id="accordion-details-03">
+                            <!-- the start of search Accounts inner content-->
+                            <div style="width:auto;display:block;" id="tbl{$accheadtext}">
+                                <input type="hidden" id="showtbl{$accheadtext}" name="showacc" value="{$showdispacc}">
+                                <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">{$MOD.filteracc}&nbsp;
+                                            <select name="selfilteracc1" id="selfilteracc1" class="singlecombo" tabindex="30">
+                                                {foreach key=row item=accfilter from=$accountfilters} {if $row eq $indexaccfilter1}
+                                                <option value="{$row}" selected>{$accfilter}</option>
+                                                {else}
+                                                <option value="{$row}">{$accfilter}</option>
+                                                {/if} {/foreach}
+                                            </select>
+                                        </div>
+                                        <div class="slds-col">{$MOD.filtercont}&nbsp;
+                                            <select name="selfilteraccountcon" id="selfilteraccountcon" class="singlecombo" tabindex="30">
+                                                {foreach key=row item=confilter from=$contactfilters} {if $row eq $indexaccountconfilter}
+                                                <option value="{$row}" selected>{$confilter}</option>
+                                                {else}
+                                                <option value="{$row}">{$confilter}</option>
+                                                {/if} {/foreach}
+                                            </select>
+                                        </div>
+                                    </div>
+                                  <div> <br/>
+                                  <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">{$MOD.nocontacts}
+                                            <input type=checkbox name="nocontacts" {$nocontacts}>
+                                        </div>
+                                        <div class="slds-col">{$MOD.withcontacts}
+                                            <input type=checkbox name="withcontacts" {$withcontacts}>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                         </td>{/strip}
-                      </tr>
-                   </table>
-		<div style="width:auto;display:{$showdispcon1};" id="tbl1{$con1headtext}" >
-                    <input type="hidden" id="showtbl1{$con1headtext}" name="showcon1" value="{$showdispcon1}">
-		  <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
-                  <tr>
-                    <td width="20%" class="dvtCellLabel" align=right>
-                            {$MOD.filtercont}
-                    </td>
-                    <td width="30%" align=left class="dvtCellInfo">
-                                <select name="selfiltercon1" class="singlecombo" tabindex="30">
-                                 {foreach key=row item=confilter from=$contactfilters}
-                                    {if $row eq $indexconfilter1}
-                                    <option value="{$row}" selected>{$confilter}</option>
-                                    {else}
-                                    <option value="{$row}">{$confilter}</option>
-                                    {/if}
-                                  {/foreach}
-                                </select>
-                    </td>
-                         <td width="20%" class="dvtCellLabel" align=right>
-                            {$MOD.filteracc}
-                    </td>
-                    <td width="30%" align=left class="dvtCellInfo">
-                                <select name="selfilteracccon1" class="singlecombo" tabindex="30">
-                                 {foreach key=row item=accfilter from=$accountfilters}
-                                    {if $row eq $indexfilterconacc1}
-                                    <option value="{$row}" selected>{$accfilter}</option>
-                                    {else}
-                                    <option value="{$row}">{$accfilter}</option>
-                                    {/if}
-                                  {/foreach}
-                                </select>
-                    </td>
-                    </tr>
-	         </table>
-		</div>
-</td>
-</tr>
-</table>
-<br>
-<div align="center">
-<input title="{$APP.LBL_SEARCH_BUTTON_TITLE}" accessKey="{$APP.LBL_SEARCH_BUTTON_KEY}" class="slds-button slds-button_neutral" type="submit" name="button" value="  {$APP.LBL_SEARCH_BUTTON_LABEL}  " id="searchbutton1">
+                            <!-- the End of search Accounts inner content-->
+                        </div>
+                    </section>
+                </li>
+
+                {assign var=con1headtext value=$MOD.conparams|replace:' ':''}
+                <li class="slds-accordion__list-item" onclick="accordionOpen('section_searchcontacts');">
+                    <section id="section_searchcontacts" class="slds-accordion__section">
+                        <div class="slds-accordion__summary">
+                            <h3 class="slds-accordion__summary-heading">
+                            <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" />
+                            </svg>
+                            <span style="float:right;color:#0073ea" class="slds-truncate" title="Accordion summary">{$MOD.conparams}</span>
+                            </h3>
+                            <div>
+                                <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" title="Show More" onclick="accordionOpen('section_searchcontacts');">
+                                    <svg class="slds-button__icon" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#down" />
+                                    </svg>
+                                    <span class="slds-assistive-text">Show More</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div aria-hidden="true" class="slds-accordion__content" id="accordion-details-03">
+                            <!-- the start of search contacts inner content-->
+                            <div style="width:auto;display:block;" id="tbl1{$con1headtext}" class="slds-grid slds-gutters">
+                                <input type="hidden" id="showtbl1{$con1headtext}" name="showcon1" value="{$showdispcon1}">
+                                    <div class="slds-grid slds-gutters">
+                                        <div class="slds-col">{$MOD.filtercont}&nbsp;
+                                            <select name="selfiltercon1" id="selfiltercon1" class="singlecombo" tabindex="30">
+                                                {foreach key=row item=confilter from=$contactfilters} {if $row eq $indexconfilter1}
+                                                <option value="{$row}" selected>{$confilter}</option>
+                                                {else}
+                                                <option value="{$row}">{$confilter}</option>
+                                                {/if} {/foreach}
+                                            </select>
+                                        </div>
+                                        <div class="slds-col"> {$MOD.filteracc}&nbsp;
+                                            <select name="selfilteracccon1" id="selfilteracccon1" class="singlecombo" tabindex="30">
+                                                {foreach key=row item=accfilter from=$accountfilters} {if $row eq $indexfilterconacc1}
+                                                <option value="{$row}" selected>{$accfilter}</option>
+                                                {else}
+                                                <option value="{$row}">{$accfilter}</option>
+                                                {/if} {/foreach}
+                                            </select>
+                                        </div>
+                                    </div>
+                            </div>
+                            <br>
+                            <!-- the End of search contacts inner content-->
+                        </div>
+                    </section>
+                </li>
+                {* <div align="center">
+                    <input title="{$APP.LBL_SEARCH_BUTTON_TITLE}" accessKey="{$APP.LBL_SEARCH_BUTTON_KEY}" class="slds-button slds-button_neutral searchbutton" type="submit" name="button" value=" {$APP.LBL_SEARCH_BUTTON_LABEL}  " id="searchbutton1">
+                </div>*}
+                <ul>
+        </header>
+        <footer>
+            <pagination limit={$PAGINATION_LIMIT} outer></pagination>
+        </footer>
+        <table class="rptTable">
+            <tr>
+                {foreach key=dtkey item=dtheader from=$LIST_HEADER}
+                <th pid="{$dtkey}" class="rptCellLabel">{$dtheader}</th>
+                {/foreach}
+            </tr>
+        </table>
+    </datatable>
 </div>
-</form>
-<form name="InvoiceLines2" method="POST" action="index.php">
-<input type="hidden" name="module" value="{$MODULE}">
-<input type="hidden" name="record" value="{if isset($ID)}{$ID}{/if}">
-<input type="hidden" name="mode" value="{if isset($MODE)}{$MODE}{/if}">
-<input type="hidden" name="action" value="convert">
-<input type="hidden" name="convertto" value="contacts">
-<input type="hidden" name="parenttab" value="{$CATEGORY}">
-<input type="hidden" name="selectallrecords2" id="selectallrecords2" value="0">
-<input type="hidden" name="mytab" value="2">
-{assign var=iv1headtext value=$MOD.params|replace:' ':''}
-<br>
-<input class="ui-button ui-widget ui-state-default ui-corner-all ui-state-hover" type="button" id="chooseAllBtn2" value="{'Select all records'|@getTranslatedString:'MarketingDashboard'}" onclick="toggleSelectAllEntries_ListView('2');" {if $hideSelectAll1 eq 'true'} style="display:none"{/if}/>
-<div class="k-content" style="clear:both;">
-<div id="grid_contacts"></div>
-<script>
+<!-- Table Row Template -->
+<table id="create_contact_search_row_template" hidden>
+	<tr>
+		{foreach key=dtkey item=dtheader from=$LIST_FIELDS}
+			<td v="{$dtkey}" class="rptData"></td>
+		{/foreach}
+	</tr>
+</table>
+<script type="text/javascript">
 {literal}
-var dsMDContactResults = new kendo.data.DataSource({
-    transport: {
-            read:  {
-                url: crudServiceBaseUrl + "&exec=List&mktdbtab=2",
-                dataType: "json"
-            },
-            update: {
-                url: crudServiceBaseUrl + "&exec=Update&mktdbtab=2",
-                dataType: "json"
-            },
-            destroy: {
-                url: crudServiceBaseUrl + "&exec=Destroy&mktdbtab=2",
-                dataType: "json"
-            },
-        },
-    pageSize: {/literal}{$PAGESIZE}{literal},
-    pageable: true,
-    serverPaging: true,
-    serverSorting: true,
-    serverFiltering: true,
-    schema: {
-        model: {
-            fields: {/literal}{$fields1}{literal}
-        },
-        data: "results",
-        total: "total"
-    },
-    group: {/literal}{$groups1}{literal}
-});
-$(document).ready(function() {
-  $("#grid_contacts").kendoGrid({
-    dataSource: dsMDContactResults,
-    height: 400,
-    sortable: {
-    mode: "multiple",
-    allowUnsort: true
-    },
-    groupable:true,
-    scrollable:true,
-    selectable: "row",
-    pageable: true,
-    dataBound: updateGridSelectAllCheckbox,
-    filterable: false,
-    sortable: false,
-    columns:{/literal}{$columns1}{literal} 
-    });
-});
+//{* Handle Action from the Table *}
+Template.define('create_contact_search_row_template', {});
+DataTable.onRedraw(document.getElementsByTagName('datatable')[0], function (data) {});
 {/literal}
+Pagination._config.langFirst = "{$APP.LNK_LIST_START}";
+Pagination._config.langLast = "{$APP.LNK_LIST_END}";
+Pagination._config.langPrevious = "< {$APP.LNK_LIST_PREVIOUS}";
+Pagination._config.langNext = "{$APP.LNK_LIST_NEXT} >";
+{literal}
+Pagination._config.langStats = "{from}-{to} {/literal}{$APP.LBL_LIST_OF}{literal} {total} ({/literal}{$APP.Page}{literal} {currentPage} {/literal}{$APP.LBL_LIST_OF}{literal} {lastPage})";
+DataTableConfig.loadingImg = 'themes/images/loading.svg';
+
+DataTableConfig.searchInputName = 'selfilteracc1';
+DataTableConfig.searchInputName = 'selfilteraccountcon';
+
+DataTableConfig.searchInputName = 'selfiltercon1';
+DataTableConfig.searchInputName = 'selfilteracccon1';
 </script>
-</div>
-<table border=0 cellspacing=0 cellpadding=0 width=100% class="small" style="padding:10px 5px 0px 5px">
-<tr><td colspan=4>&nbsp;</td></tr>
-<tr>{strip}
-<td colspan=4 class="dvInnerHeader" >
-<div style="float:left;font-weight:bold;"><div style="float:left;"><a href="javascript:showHideStatus('tbl1{$iv1headtext}','aid1{$iv1headtext}',0);">
-<span id="aid1{$iv1headtext}" class="slds-accordion" style="display: inline-block;"></span>
-<span style="float:right;color:#0073ea;"> &nbsp; {$MOD.params}</a>
-    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-    </svg>
-</span>
-</div>
-</td>{/strip}
-</tr>
-</table>
-<div style="width:auto;display:none;padding:0px 5px 0px 5px" id="tbl1{$iv1headtext}" >
-  <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
-     <tr>
-     <td width="20%" class="dvtCellLabel" align=right>{$MOD.AssignInvoiceTo}</td>
-    <td width="30%" align=left class="dvtCellInfo">
-        <select name="assignto_contact" class="singlecombo" tabindex="10">
-        {foreach key=key_one item=arr from=$ASSIGNEDTO_ARRAY1}
-            {foreach key=sel_value item=value from=$arr}
-                <option value="{$key_one}" {$value}>{$sel_value}</option>
-            {/foreach}
-        {/foreach}
-        </select>
-    </td>
-    <td width="20%" class="dvtCellLabel" align=right>
-    </td>
-    <td width="30%" align=left class="dvtCellInfo"></td>
-    </tr>
-  </table>
-</div>
-<div align="center">
-<br><br>
-<input title="{$MOD.CREATE_CONTACTS}" accessKey="V" class="slds-button slds-button_neutral" type="submit" name="button" id="createcontacts" value="  {$MOD.CREATE_CONTACTS}  " onclick="return oneSelected('InvoiceLines2');">
-</div>
-</form>
+{/literal}

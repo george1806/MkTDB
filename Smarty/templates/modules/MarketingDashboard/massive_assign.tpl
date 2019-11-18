@@ -5,111 +5,102 @@
 <input type="hidden" name="action" value="index">
 <input type="hidden" name="parenttab" value="{$CATEGORY}">
 <input type="hidden" name="mytab" value="3">
-{* Contents *}
-<table border=0 cellspacing=0 cellpadding=0 width=100% align="center">
-                   <tr>
-                    <td style="padding:10px 5px 0px 5px">
-                    <table border=0 cellspacing=0 cellpadding=0 width=100% class="small">
-                    <tr>{strip}
-                         <td colspan=4 class="dvInnerHeader">
-                            <div style="float:left;font-weight:bold;"><a href="javascript:showHideStatus('tbl31','aid31',1);">
-                            {if $show31 eq 'block'}
-                                 <span id="aid31" class="slds-accordion" style="display: inline-block;">
-                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-                                        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-                                    </svg>                                 
-                                 </span>
-                                   {else}
-                                  <span id="aid31" class="slds-accordion" style="display: inline-block;">
-                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-                                        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-                                    </svg>                                  
-                                  </span>
-                                 {/if}<span style="float:right;color:#0073ea"> &nbsp; {$MOD.accparams}</span></a>
-                            </div>
-                         </td>{/strip}
-                      </tr>
-                   </table>
-		<div style="width:auto;display:{$show31};" id="tbl31" >
-          <input type="hidden" id="showtbl31" name="show31" value="{$show31}">
-		  <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
-                  <tr>
-                    <td width="20%" class="dvtCellLabel" align=right>
-                            {$MOD.filteracc}
+
+<ul class="slds-accordion">
+<li class="slds-accordion__list-item" onclick="accordionOpen('section_srchaccounts');">
+<section id="section_srchaccounts" class="slds-accordion__section">
+   <div class="slds-accordion__summary">
+   <h3 class="slds-accordion__summary-heading">
+   <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" />
+   </svg>
+   <span style="float:right;color:#0073ea" class="slds-truncate" title="Accordion summary">{$MOD.accparams}</span>
+   </h3>
+   <div>
+   <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" title="Show More" onclick="accordionOpen('section_srchaccounts');">
+   <svg class="slds-button__icon" aria-hidden="true">
+   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#down" />
+   </svg>
+   <span class="slds-assistive-text">Show More</span>
+   </button>
+   </div>
+</div>
+<div aria-hidden="true" class="slds-accordion__content" id="accordion-details-03">
+<!-- the start of search Accounts inner content-->
+    <div style="width:auto;display:block;" id="tbl31" >
+        <input type="hidden" id="showtbl31" name="show31" value="{$show31}">
+        <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
+                <tr>
+                <td width="20%" class="dvtCellLabel" align=right>{$MOD.filteracc}</td>
+                <td width="30%" align=left class="dvtCellInfo">
+                    <select name="selfilteracc2" class="singlecombo" tabindex="30">
+                        {foreach key=row item=accfilter from=$accountfilters}
+                            {if $row eq $indexaccfilter2}
+                            <option value="{$row}" selected>{$accfilter}</option>
+                            {else}
+                            <option value="{$row}">{$accfilter}</option>
+                            {/if}
+                        {/foreach}
+                    </select>
+                </td>
+                <td width="20%" class="dvtCellLabel" align=right>
+        </td>
+        <td width="30%" class="dvtCellInfo" align=left>
                     </td>
-                    <td width="30%" align=left class="dvtCellInfo">
-                                <select name="selfilteracc2" class="singlecombo" tabindex="30">
-                                 {foreach key=row item=accfilter from=$accountfilters}
-                                    {if $row eq $indexaccfilter2}
-                                    <option value="{$row}" selected>{$accfilter}</option>
-                                    {else}
-                                    <option value="{$row}">{$accfilter}</option>
-                                    {/if}
-                                  {/foreach}
-                                </select>
-                    </td>
-                        <td width="20%" class="dvtCellLabel" align=right>
-			</td>
-			<td width="30%" class="dvtCellInfo" align=left>
-                        </td>
-                    </tr>
-	         </table>
-		</div>
-</td>
-</tr>
-</table>
-  <table border=0 cellspacing=0 cellpadding=0 width=100% align="center">
-                   <tr>
-                    <td style="padding:10px 5px 0px 5px">
-                    <table border=0 cellspacing=0 cellpadding=0 width=100% class="small">
-                    <tr>{strip}
-                         <td colspan=4 class="dvInnerHeader">
-                            <div style="float:left;font-weight:bold;"><a href="javascript:showHideStatus('tbl32','aid32',1);">
-                            {if $show32 eq 'block'}
-                                 <span id="aid32" class="slds-accordion" style="display: inline-block;">
-                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-                                        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-                                    </svg>                                 
-                                 </span>
-                                   {else}
-                                  <span id="aid32" class="slds-accordion" style="display: inline-block;">
-                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-                                        <use xlink:href="./include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" xmlns:xlink="http://www.w3.org/1999/xlink" />
-                                    </svg>                                  
-                                  </span>
-                                 {/if}<span style="float:right;color:#0073ea"> &nbsp; {$MOD.conparams}</span></a>
-                            </div>
-                         </td>{/strip}
-                      </tr>
-                   </table>
-		<div style="width:auto;display:{$show32};" id="tbl32" >
-          <input type="hidden" id="showtbl32" name="show32" value="{$show32}">
-		  <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
-                  <tr>
-                    <td width="20%" class="dvtCellLabel" align=right>
-                            {$MOD.filtercont}
-                    </td>
-                    <td width="30%" align=left class="dvtCellInfo">
-                                <select name="selfiltercon2" class="singlecombo" tabindex="30">
-                                 {foreach key=row item=confilter from=$contactfilters}
-                                    {if $row eq $indexconfilter2}
-                                    <option value="{$row}" selected>{$confilter}</option>
-                                    {else}
-                                    <option value="{$row}">{$confilter}</option>
-                                    {/if}
-                                  {/foreach}
-                                </select>
-                    </td>
-                        <td width="20%" class="dvtCellLabel" align=right>
-			</td>
-			<td width="30%" class="dvtCellInfo" align=left>
-                        </td>
-                    </tr>
-	         </table>
-		</div>
-</td>
-</tr>
-</table>
+                </tr>
+            </table>
+    </div>
+<!-- the End of search Accounts inner content-->
+</div>
+</section>
+</li>
+
+<li class="slds-accordion__list-item" onclick="accordionOpen('section_contparams');">
+<section id="section_contparams" class="slds-accordion__section">
+   <div class="slds-accordion__summary">
+   <h3 class="slds-accordion__summary-heading">
+   <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" />
+   </svg>
+   <span style="float:right;color:#0073ea" class="slds-truncate" title="Accordion summary">{$MOD.conparams}</span>
+   </h3>
+   <div>
+   <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" title="Show More" onclick="accordionOpen('section_contparams');">
+   <svg class="slds-button__icon" aria-hidden="true">
+   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#down" />
+   </svg>
+   <span class="slds-assistive-text">Show More</span>
+   </button>
+   </div>
+</div>
+<div aria-hidden="true" class="slds-accordion__content" id="accordion-details-03">
+<!-- the start of contact Params inner content-->
+    <div style="width:auto;display:block;" id="tbl32" >
+        <input type="hidden" id="showtbl32" name="show32" value="{$show32}">
+        <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
+            <tr>
+                <td width="20%" class="dvtCellLabel" align=right>{$MOD.filtercont}</td>
+                <td width="30%" align=left class="dvtCellInfo">
+                    <select name="selfiltercon2" class="singlecombo" tabindex="30">
+                        {foreach key=row item=confilter from=$contactfilters}
+                            {if $row eq $indexconfilter2}
+                            <option value="{$row}" selected>{$confilter}</option>
+                            {else}
+                            <option value="{$row}">{$confilter}</option>
+                            {/if}
+                        {/foreach}
+                    </select>
+                </td>
+                <td width="20%" class="dvtCellLabel" align=right></td>
+                <td width="30%" class="dvtCellInfo" align=left></td>
+            </tr>
+        </table>
+    </div>
+<!-- the End of contact Params inner content-->
+</div>
+</section>
+</li>
+</ul>
 <br>
 <div align="center">
 <input title="{$APP.LBL_SEARCH_BUTTON_TITLE}" accessKey="{$APP.LBL_SEARCH_BUTTON_KEY}" class="slds-button slds-button_neutral" type="submit" name="button" value="  {$APP.LBL_SEARCH_BUTTON_LABEL}  " id="searchbutton3">
@@ -182,9 +173,28 @@ $(document).ready(function() {
 </script>
 {/literal}
 </div>
-<br><br>
-<div id="accordion3">
- <h3><a href="#">{'REASSIGNPARAMS'|@getTranslatedString:'MarketingDashboard'}</a></h3>
+<ul class="slds-accordion">
+
+<li class="slds-accordion__list-item" onclick="accordionOpen('section_reassignparms');">
+<section id="section_reassignparms" class="slds-accordion__section">
+   <div class="slds-accordion__summary">
+   <h3 class="slds-accordion__summary-heading">
+   <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" />
+   </svg>
+   <span style="float:right;color:#0073ea" class="slds-truncate" title="Accordion summary">{'REASSIGNPARAMS'|@getTranslatedString:'MarketingDashboard'}</span>
+   </h3>
+   <div>
+   <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" title="Show More" onclick="accordionOpen('section_reassignparms');">
+   <svg class="slds-button__icon" aria-hidden="true">
+   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#down" />
+   </svg>
+   <span class="slds-assistive-text">Show More</span>
+   </button>
+   </div>
+</div>
+<div aria-hidden="true" class="slds-accordion__content" id="accordion-details-03">
+<!-- the start of Reassign Params inner content-->
  <div>
      <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
       <tr>
@@ -192,25 +202,25 @@ $(document).ready(function() {
             {$MOD.AssignInvoiceTo}
 	</td>
         <td width="30%" align=left class="dvtCellInfo">
-                <select name="assignto_account" id="assignto_account" class="singlecombo" tabindex="10">
-                {foreach key=key_one item=arr from=$ASSIGNEDTO_ACCOUNTS}
-                        {foreach key=sel_value item=value from=$arr}
-                                <option value="{$key_one}" {$value}>{$sel_value}</option>
-                        {/foreach}
-                {/foreach}
-                </select>
+            <select name="assignto_account" id="assignto_account" class="singlecombo" tabindex="10">
+            {foreach key=key_one item=arr from=$ASSIGNEDTO_ACCOUNTS}
+                    {foreach key=sel_value item=value from=$arr}
+                    <option value="{$key_one}" {$value}>{$sel_value}</option>
+                    {/foreach}
+            {/foreach}
+            </select>
         </td>
         <td width="20%" class="dvtCellLabel" align=right>
         {$MOD.relatedmodules}
         </td>
         <td width="30%" align=left class="dvtCellInfo">
-                <select name="relatedmodules[]" id="relatedmodules" multiple>
-                    {foreach key=key_one item=arr from=$RELATED_MODULES}
-                        {foreach key=sel_value item=value from=$arr}
-                                <option value="{$key_one}" {$value}>{$sel_value|@getTranslatedString:$sel_value}</option>
-                        {/foreach}
-                {/foreach}
-                </select>
+            <select name="relatedmodules[]" id="relatedmodules" multiple>
+                {foreach key=key_one item=arr from=$RELATED_MODULES}
+                    {foreach key=sel_value item=value from=$arr}
+                    <option value="{$key_one}" {$value}>{$sel_value|@getTranslatedString:$sel_value}</option>
+                    {/foreach}
+            {/foreach}
+            </select>
         </td>
    </tr>
  </table>
@@ -219,9 +229,32 @@ $(document).ready(function() {
 <input title="{$MOD.REASSIGN}" accessKey="V" class="slds-button slds-button_neutral" type="submit" name="button" id="reassign" value="  {$MOD.REASSIGN}  " onclick="this.form.convertto.value='reassign';return change_assign();">
 </div>
 </div>
- <h3><a href="#">{'MOVEONPARAM'|@getTranslatedString:'MarketingDashboard'}</a></h3>
+<!-- the End of Reassign Params inner content-->
+</div>
+</section>
+</li>
+<li class="slds-accordion__list-item" onclick="accordionOpen('section_moveonparams');">
+<section id="section_moveonparams" class="slds-accordion__section">
+   <div class="slds-accordion__summary">
+   <h3 class="slds-accordion__summary-heading">
+   <svg class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#switch" />
+   </svg>
+   <span style="float:right;color:#0073ea" class="slds-truncate" title="Accordion summary">{'MOVEONPARAM'|@getTranslatedString:'MarketingDashboard'}</span>
+   </h3>
+   <div>
+   <button type="button" class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" title="Show More" onclick="accordionOpen('section_moveonparams');">
+   <svg class="slds-button__icon" aria-hidden="true">
+   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="include/LD/assets/icons/utility-sprite/svg/symbols.svg#down" />
+   </svg>
+   <span class="slds-assistive-text">Show More</span>
+   </button>
+   </div>
+</div>
+<div aria-hidden="true" class="slds-accordion__content" id="accordion-details-03">
+<!-- the start of Move On Params inner content-->
 <div>
-    <center><div id="load"></div></center>
+<center><div id="load"></div></center>
   <table border=0 cellspacing=0 cellpadding=0 width="100%" class="small">
   <tr>
   <td width="20%" class="dvtCellLabel" align=right>{$MOD.module_from}</td>
@@ -234,15 +267,15 @@ $(document).ready(function() {
     </td>
     <td width="20%" class="dvtCellLabel" align=right>{$MOD.module_to}</td>
     <td width="30%" align=left class="dvtCellInfo">
-            <select name="moduleto" id="moduleto" class="singlecombo" tabindex="10" onchange="findfields(this.id,this.value,0);">
-                 {foreach key=key_one item=arr from=$RELATED_MODULES}
-                        {foreach key=sel_value item=value from=$arr}
-{if $sel_value!='ModComments'}
-                           <option value="{$key_one}">{$sel_value|@getTranslatedString:$sel_value}</option>
-{/if}
-                        {/foreach}
-                {/foreach}
-            </select>
+        <select name="moduleto" id="moduleto" class="singlecombo" tabindex="10" onchange="findfields(this.id,this.value,0);">
+                {foreach key=key_one item=arr from=$RELATED_MODULES}
+                    {foreach key=sel_value item=value from=$arr}
+                        {if $sel_value!='ModComments'}
+                        <option value="{$key_one}">{$sel_value|@getTranslatedString:$sel_value}</option>
+                        {/if}
+                    {/foreach}
+            {/foreach}
+        </select>
     </td>
     </tr>
     <tr>
@@ -258,7 +291,7 @@ $(document).ready(function() {
     <td width="30%" align=left class="dvtCellInfo">
         <select name="moduletofields" id="moduletofields" class="singlecombo" tabindex="10">
           {foreach key=fldname item=fldlabel from=$relatedfields}
-             <option value={$fldname}>{$fldlabel}</option>
+          <option value={$fldname}>{$fldlabel}</option>
           {/foreach}
         </select>
     </td>
@@ -270,5 +303,9 @@ $(document).ready(function() {
 <input title="{$MOD.MOVEON}" accessKey="V" class="sdls-button convertbutton" type="submit" name="button" id="moveon" value="  {$MOD.MOVEON}  " onclick="this.form.convertto.value='moveon'; return movefieldsbetweenentities();">
 </div>
 </div>
+<!-- the End of Move On Params inner content-->
 </div>
+</section>
+</li>
+</ul>
 </form>

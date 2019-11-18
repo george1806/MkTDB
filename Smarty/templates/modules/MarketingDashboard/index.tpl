@@ -4,6 +4,21 @@
 <script src="include/kendoui/js/kendo.web.min.js"></script>
 <script src="include/kendoui/js/kendo.pager.min.js"></script>
 
+<!-- BunnyJs Script Files -->
+<link rel="stylesheet" href="include/bunnyjs/css/svg-icons.css">
+<script src="include/bunnyjs/utils-dom.min.js"></script>
+<script src="include/bunnyjs/ajax.min.js"></script>
+<script src="include/bunnyjs/template.min.js"></script>
+<script src="include/bunnyjs/pagination.min.js"></script>
+<script src="include/bunnyjs/url.min.js"></script>
+<script src="include/bunnyjs/utils-svg.min.js"></script>
+<script src="include/bunnyjs/spinner.min.js"></script>
+<script src="include/bunnyjs/datatable.min.js"></script>
+<script src="include/bunnyjs/datatable.icons.min.js"></script>
+<script src="include/bunnyjs/element.min.js"></script>
+<script src="include/bunnyjs/datatable.scrolltop.min.js"></script>
+<!-- BunnyJs Script Files -->
+
 <script src="modules/MarketingDashboard/MarketingDashboard.js"></script>
 <link rel="stylesheet" type="text/css" href="modules/MarketingDashboard/styles/jquery-ui-1.9.2.custom.css" />
 <script type="text/javascript" src="modules/MarketingDashboard/js/jquery-ui-1.9.2.custom.js"></script>
@@ -11,7 +26,6 @@
 <script type="text/javascript" src="modules/MarketingDashboard/js/jquery-multiselect-filter.js"></script>
 <link rel="stylesheet" type="text/css" href="modules/MarketingDashboard/styles/jquery-multiselect.css"/>
 <link rel="stylesheet" type="text/css" href="modules/MarketingDashboard/styles/jquery-multiselect-filter.css"/>
-<link rel="stylesheet" type="text/css" href="include/LD/assets/styles/salesforce-lightning-design-system.css" />
 <script type="text/javascript">
 {literal}
 $(function(){
@@ -86,6 +100,11 @@ $.extend({ alert: function (message, title) {
 	height: auto;
 	width: 90%;
 }
+.slds-truncate{
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
 </style>
 {/literal}
 
@@ -100,12 +119,12 @@ $(function(){
 {/literal}
 </script>
 <div id="tabs" style="padding:20px; width:95%">
-	<ul>
-        <li><a href="#tabs-1">{$MOD.convert_entities}</a></li>
-		<li><a href="#tabs-2">{$MOD.create_contacts}</a></li>
-        <li><a href="#tabs-3">{$MOD.manage_assign}</a></li>
-        <li><a href="index.php?module=MarketingDashboard&action=MarketingDashboardAjax&file=batch_status">{$MOD.CRONJOB}</a></li>
-	</ul>
+  <ul>
+    <li><a href="#tabs-1">{$MOD.convert_entities}</a></li>
+    <li><a href="#tabs-2">{$MOD.create_contacts}</a></li>
+    <li><a href="#tabs-3">{$MOD.manage_assign}</a></li>
+    <li><a href="index.php?module=MarketingDashboard&action=MarketingDashboardAjax&file=batch_status">{$MOD.CRONJOB}</a></li>
+  </ul>
     <div id="tabs-1">
         {include file='modules/MarketingDashboard/campaign_management.tpl'}
     </div>
@@ -116,3 +135,14 @@ $(function(){
         {include file='modules/MarketingDashboard/massive_assign.tpl'}
     </div>
  </div>
+
+<script>
+function accordionOpen(section2open) {
+	var sections = document.querySelectorAll('.slds-accordion__section');
+	for (var sec=0; sec<sections.length; sec++) {
+		sections[sec].classList.remove('slds-is-open');
+	}
+	document.getElementById(section2open).classList.add('slds-is-open');
+	return false;
+}
+</script>
